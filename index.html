@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introibrotech | Precision Tools, Engineered for Efficiency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-text { background: linear-gradient(90deg, #4F46E5, #7E22CE); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-pattern { background-color: #f9fafb; background-image: radial-gradient(#4F46E5 0.5px, transparent 0.5px), radial-gradient(#7E22CE 0.5px, #f9fafb 0.5px); background-size: 20px 20px; background-position: 0 0, 10px 10px; }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-gray-200 fixed w-full top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">I</span>
+                    </div>
+                    <span class="text-xl font-bold gradient-text">Introibrotech</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#tools" class="text-gray-600 hover:text-indigo-600 font-medium">Tools</a>
+                    <a href="#vision" class="text-gray-600 hover:text-indigo-600 font-medium">Vision</a>
+                    <a href="#future" class="text-gray-600 hover:text-indigo-600 font-medium">Future</a>
+                    <a href="#" class="bg-indigo-600 text-white px-4 py-2 rounded-md font-medium hover:bg-indigo-700 shadow-sm">Early Access</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-pattern pt-32 pb-16 md:pt-40 md:pb-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-6">Precision Tools, <span class="gradient-text">Engineered for Efficiency</span></h1>
+            <p class="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
+                We're building a new paradigm of software. Not bloated apps, but a curated suite of hyper-efficient, specialized tools that solve real problems with elegant code.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#demo" class="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-md shadow-sm hover:bg-indigo-700 transition flex items-center justify-center gap-2">
+                    <i class="fas fa-bolt"></i> Try First Tool
+                </a>
+                <a href="#vision" class="border border-gray-300 text-gray-700 font-semibold px-6 py-3 rounded-md hover:bg-white transition">
+                    Learn Our Vision
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Tool Section -->
+    <section id="demo" class="py-16 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">Tool #1: Background Remover</h2>
+                <p class="text-lg text-gray-600">A glimpse of our philosophy. Faster, cheaper, and built for developers.</p>
+            </div>
+
+            <div class="bg-gray-50 rounded-xl shadow-inner p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Upload Area -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4 text-gray-900">Input</h3>
+                        <div id="drop-zone" class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer transition-all duration-200 hover:border-indigo-400 hover:bg-white">
+                            <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-2"></i>
+                            <p class="text-gray-500">Drag & drop your image here</p>
+                            <p class="text-sm text-gray-400 mt-2">or</p>
+                            <input type="file" id="file-input" class="hidden" accept="image/*">
+                            <label for="file-input" class="mt-2 bg-indigo-600 text-white px-4 py-2 rounded-md inline-block cursor-pointer text-sm hover:bg-indigo-700">Choose File</label>
+                        </div>
+                        <div id="preview-container" class="mt-4 hidden">
+                            <img id="preview-image" class="mt-2 rounded-md shadow-sm max-h-52 mx-auto"/>
+                        </div>
+                        <button id="process-button" class="mt-6 w-full bg-indigo-600 text-white py-3 rounded-md font-semibold hover:bg-indigo-700 transition hidden">
+                            <i class="fas fa-cog fa-spin hidden" id="spinner"></i>
+                            <span id="button-text">Remove Background</span>
+                        </button>
+                    </div>
+                    <!-- Result Area -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4 text-gray-900">Output</h3>
+                        <div id="result-placeholder" class="flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg h-64 bg-gray-100">
+                            <p class="text-gray-400 text-center p-4">Your processed image will appear here. The background will be removed, leaving a transparent PNG.</p>
+                        </div>
+                        <div id="result-container" class="hidden">
+                            <img id="result-image" class="mt-2 rounded-md shadow-sm max-h-64 mx-auto"/>
+                            <a id="download-button" class="mt-4 w-full bg-green-600 text-white py-3 rounded-md font-semibold hover:bg-green-700 transition text-center block">
+                                <i class="fas fa-download"></i> Download Image
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center mt-8 text-sm text-gray-500">This is a live demo. For production use, see our <a href="#" class="text-indigo-600 hover:underline">API documentation</a>.</p>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section id="vision" class="py-16 bg-gradient-to-br from-indigo-50 to-purple-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-gray-900 mb-12">Why We Exist</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mb-4">
+                        <i class="fas fa-fire text-red-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">The Problem</h3>
+                    <p class="text-gray-600">Modern software is bloated. "AI" solutions often rely on brute force—guzzling energy in data centers to solve simple problems. This is inefficient, expensive, and inaccessible.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mb-4">
+                        <i class="fas fa-leaf text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Our Solution</h3>
+                    <p class="text-gray-600">We believe in <strong>algorithmic elegance over brute force</strong>. We build hyper-efficient, specialized tools that solve one problem perfectly, with minimal resources and maximum clarity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Tools Section -->
+    <section id="future" class="py-16 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">What's Next?</h2>
+            <p class="text-lg text-gray-600 mb-12">The Background Remover is just the beginning. Our pipeline is full of tools designed for precision.</p>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 hover:border-indigo-300 transition">
+                    <i class="fas fa-code text-indigo-600 text-2xl mb-2"></i>
+                    <p class="font-medium">Code Formatter</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 hover:border-indigo-300 transition">
+                    <i class="fas fa-table text-indigo-600 text-2xl mb-2"></i>
+                    <p class="font-medium">Data Converter</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 hover:border-indigo-300 transition">
+                    <i class="fas fa-qrcode text-indigo-600 text-2xl mb-2"></i>
+                    <p class="font-medium">QR Architect</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 hover:border-indigo-300 transition">
+                    <i class="fas fa-file-pdf text-indigo-600 text-2xl mb-2"></i>
+                    <p class="font-medium">PDF Forge</p>
+                </div>
+            </div>
+
+            <div class="bg-indigo-50 rounded-xl p-8 max-w-2xl mx-auto">
+                <h3 class="text-xl font-semibold mb-4">Join the Journey</h3>
+                <p class="mb-4">Be the first to access new tools. We're building the future of efficient software, and we want you to be a part of it.</p>
+                <form class="flex flex-col sm:flex-row gap-2">
+                    <input type="email" placeholder="Your email address" required class="flex-grow px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <button type="submit" class="bg-indigo-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-indigo-700 transition">Get Early Access</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex items-center justify-center space-x-2 mb-4">
+                <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center">
+                    <span class="text-white font-bold text-sm">I</span>
+                </div>
+                <span class="text-xl font-bold">Introibrotech</span>
+            </div>
+            <p class="mb-4">Building the next generation of efficient computing.</p>
+            <p class="text-sm text-gray-400">© 2024 Introibrotech. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Elements
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const previewContainer = document.getElementById('preview-container');
+        const previewImage = document.getElementById('preview-image');
+        const processButton = document.getElementById('process-button');
+        const buttonText = document.getElementById('button-text');
+        const spinner = document.getElementById('spinner');
+        const resultPlaceholder = document.getElementById('result-placeholder');
+        const resultContainer = document.getElementById('result-container');
+        const resultImage = document.getElementById('result-image');
+        const downloadButton = document.getElementById('download-button');
+
+        // Event Listeners
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, preventDefaults, false);
+            document.addEventListener(eventName, preventDefaults, false);
+        });
+        function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
+
+        dropZone.addEventListener('drop', handleDrop);
+        fileInput.addEventListener('change', handleFileSelect);
+        dropZone.addEventListener('click', () => fileInput.click());
+        processButton.addEventListener('click', processImage);
+
+        // Highlight drop zone
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => dropZone.classList.add('border-indigo-400', 'bg-white'), false);
+        });
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => dropZone.classList.remove('border-indigo-400', 'bg-white'), false);
+        });
+
+        function handleDrop(e) { handleFiles(e.dataTransfer.files); }
+        function handleFileSelect(e) { handleFiles(e.target.files); }
+
+        function handleFiles(files) {
+            if (files.length === 0) return;
+            const file = files[0];
+            if (!file.type.match('image.*')) { alert('Please upload an image file (JPEG, PNG, etc.).'); return; }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+                previewContainer.classList.remove('hidden');
+                processButton.classList.remove('hidden');
+                // Reset result area
+                resultContainer.classList.add('hidden');
+                resultPlaceholder.classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // This function will call your Railway API
+        function processImage() {
+            if (!fileInput.files[0]) return;
+
+            // UI Updates
+            processButton.disabled = true;
+            buttonText.textContent = 'Processing...';
+            spinner.classList.remove('hidden');
+
+            // **THIS IS WHERE YOU INTEGRATE YOUR API**
+            // Simulate API call with a timeout. REPLACE THIS WITH fetch().
+            setTimeout(() => {
+                // SIMULATION: Replace this block with real API call.
+                // let formData = new FormData();
+                // formData.append('image', fileInput.files[0]);
+                // fetch('YOUR_RAILWAY_URL/remove-bg', { method: 'POST', body: formData })
+                // .then(response => response.blob())
+                // .then(blob => {
+                //     const url = URL.createObjectURL(blob);
+                //     resultImage.src = url;
+                //     downloadButton.href = url;
+                //     downloadButton.download = 'introibrotech-no-bg.png';
+                //     resultPlaceholder.classList.add('hidden');
+                //     resultContainer.classList.remove('hidden');
+                // })
+                // .catch(error => { console.error('Error:', error); alert('Processing failed.'); })
+                // .finally(() => { resetButton(); });
+
+                // Simulated Success:
+                resultImage.src = previewImage.src; // In reality, this will be the API result
+                downloadButton.href = previewImage.src;
+                downloadButton.download = 'introibrotech-no-bg.png';
+                resultPlaceholder.classList.add('hidden');
+                resultContainer.classList.remove('hidden');
+                resetButton();
+
+            }, 1500); // Simulate network delay
+        }
+
+        function resetButton() {
+            processButton.disabled = false;
+            buttonText.textContent = 'Remove Background';
+            spinner.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
