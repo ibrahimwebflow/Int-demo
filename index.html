@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,330 +7,352 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
         body {
             font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            scroll-behavior: smooth;
         }
-
+        
         .gradient-text {
             background: linear-gradient(90deg, #4F46E5, #7E22CE);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
+        
         .hero-pattern {
-            background-color: #f9fafb;
-            background-image: radial-gradient(#4F46E5 0.5px, transparent 0.5px), radial-gradient(#7E22CE 0.5px, #f9fafb 0.5px);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
+            background: linear-gradient(to bottom right, #0f172a 0%, #1e293b 100%);
+        }
+        
+        .tool-card {
+            transition: all 0.3s ease;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.4);
+            border-color: #4F46E5;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, #4F46E5, #7E22CE);
+            border-radius: 3px;
         }
     </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
 </head>
-
-<body class="bg-gray-50">
-
+<body class="antialiased">
     <!-- Navigation -->
-    <nav class="bg-white border-b border-gray-200 fixed w-full top-0 z-10">
+    <nav class="fixed w-full top-0 z-50 bg-slate-900/90 backdrop-blur-sm border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
+            <div class="flex justify-between items-center h-16">
                 <div class="flex items-center space-x-2">
                     <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center">
                         <span class="text-white font-bold text-sm">I</span>
                     </div>
                     <span class="text-xl font-bold gradient-text">Introibrotech</span>
                 </div>
+                
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#tools" class="text-gray-600 hover:text-indigo-600 font-medium">Tools</a>
-                    <a href="#vision" class="text-gray-600 hover:text-indigo-600 font-medium">Vision</a>
-                    <a href="#future" class="text-gray-600 hover:text-indigo-600 font-medium">Future</a>
-                    <a href="#"
-                        class="bg-indigo-600 text-white px-4 py-2 rounded-md font-medium hover:bg-indigo-700 shadow-sm">Early
-                        Access</a>
+                    <a href="#tools" class="text-slate-300 hover:text-white transition">Tools</a>
+                    <a href="#vision" class="text-slate-300 hover:text-white transition">Vision</a>
+                    <a href="#projects" class="text-slate-300 hover:text-white transition">Projects</a>
+                    <a href="#newsletter" class="bg-indigo-600 text-white px-4 py-2 rounded-md font-medium hover:bg-indigo-700 transition">Get Updates</a>
                 </div>
+                
+                <div class="md:hidden">
+                    <button type="button" class="text-slate-300 hover:text-white focus:outline-none" id="mobile-menu-button">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden bg-slate-800" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#tools" class="block px-3 py-2 text-slate-300 hover:text-white hover:bg-slate-700 rounded-md">Tools</a>
+                <a href="#vision" class="block px-3 py-2 text-slate-300 hover:text-white hover:bg-slate-700 rounded-md">Vision</a>
+                <a href="#projects" class="block px-3 py-2 text-slate-300 hover:text-white hover:bg-slate-700 rounded-md">Projects</a>
+                <a href="#newsletter" class="block px-3 py-2 text-slate-300 hover:text-white hover:bg-slate-700 rounded-md">Get Updates</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-pattern pt-32 pb-16 md:pt-40 md:pb-24">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl md:text-5xl font-extrabold mb-6">Precision Tools, <span class="gradient-text">Engineered
-                    for Efficiency</span></h1>
-            <p class="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-                We're building a new paradigm of software. Not bloated apps, but a curated suite of hyper-efficient,
-                specialized tools that solve real problems with elegant code.
+    <section class="hero-pattern pt-32 pb-20 md:pt-40 md:pb-28 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Precision Tools, <span class="gradient-text">Engineered for Efficiency</span></h1>
+            <p class="text-xl text-slate-300 mb-10 max-w-3xl mx-auto">
+                We're building a new paradigm of software. Not bloated apps, but a curated suite of hyper-efficient, specialized tools that solve real problems with elegant code.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#demo"
-                    class="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-md shadow-sm hover:bg-indigo-700 transition flex items-center justify-center gap-2">
-                    <i class="fas fa-bolt"></i> Try First Tool
+                <a href="#tools" class="bg-indigo-600 text-white font-semibold px-8 py-4 rounded-md shadow-lg hover:bg-indigo-700 transition flex items-center justify-center gap-2">
+                    <i class="fas fa-bolt"></i> Explore Tools
                 </a>
-                <a href="#vision"
-                    class="border border-gray-300 text-gray-700 font-semibold px-6 py-3 rounded-md hover:bg-white transition">
-                    Learn Our Vision
+                <a href="#vision" class="border border-slate-600 text-slate-300 font-semibold px-8 py-4 rounded-md hover:bg-slate-800 transition">
+                    Our Vision
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Demo Tool Section -->
-    <section id="demo" class="py-16 bg-white">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 mb-2">Tool #1: Background Remover</h2>
-                <p class="text-lg text-gray-600">A glimpse of our philosophy. Faster, cheaper, and built for developers.
-                </p>
-            </div>
-
-            <div class="bg-gray-50 rounded-xl shadow-inner p-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Upload Area -->
-                    <div>
-                        <h3 class="text-lg font-semibold mb-4 text-gray-900">Input</h3>
-                        <div id="drop-zone"
-                            class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer transition-all duration-200 hover:border-indigo-400 hover:bg-white">
-                            <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-2"></i>
-                            <p class="text-gray-500">Drag & drop your image here</p>
-                            <p class="text-sm text-gray-400 mt-2">or</p>
-                            <input type="file" id="file-input" class="hidden" accept="image/*">
-                            <label for="file-input"
-                                class="mt-2 bg-indigo-600 text-white px-4 py-2 rounded-md inline-block cursor-pointer text-sm hover:bg-indigo-700">Choose
-                                File</label>
-                        </div>
-                        <div id="preview-container" class="mt-4 hidden">
-                            <img id="preview-image" class="mt-2 rounded-md shadow-sm max-h-52 mx-auto" />
-                        </div>
-                        <button id="process-button"
-                            class="mt-6 w-full bg-indigo-600 text-white py-3 rounded-md font-semibold hover:bg-indigo-700 transition hidden">
-                            <i class="fas fa-cog fa-spin hidden" id="spinner"></i>
-                            <span id="button-text">Remove Background</span>
-                        </button>
+    <!-- Tools Section -->
+    <section id="tools" class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4 section-title">Our Tool Suite</h2>
+            <p class="text-lg text-slate-400 text-center mb-12 max-w-2xl mx-auto">
+                Powerful utilities built with pure JavaScript. No server required. No heavy dependencies.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Tool 1 -->
+                <div class="tool-card rounded-xl p-6">
+                    <div class="w-14 h-14 rounded-lg bg-indigo-500/20 flex items-center justify-center mb-4">
+                        <i class="fas fa-qrcode text-indigo-400 text-2xl"></i>
                     </div>
-                    <!-- Result Area -->
-                    <div>
-                        <h3 class="text-lg font-semibold mb-4 text-gray-900">Output</h3>
-                        <div id="result-placeholder"
-                            class="flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg h-64 bg-gray-100">
-                            <p class="text-gray-400 text-center p-4">Your processed image will appear here. The
-                                background will be removed, leaving a transparent PNG.</p>
-                        </div>
-                        <div id="result-container" class="hidden">
-                            <img id="result-image" class="mt-2 rounded-md shadow-sm max-h-64 mx-auto" />
-                            <a id="download-button"
-                                class="mt-4 w-full bg-green-600 text-white py-3 rounded-md font-semibold hover:bg-green-700 transition text-center block">
-                                <i class="fas fa-download"></i> Download Image
-                            </a>
-                        </div>
+                    <h3 class="text-xl font-semibold mb-2">QR Code Architect</h3>
+                    <p class="text-slate-400 mb-4">Generate and read QR codes with custom styles, colors, and embedded logos.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-indigo-400">JavaScript</span>
+                        <a href="#" class="text-slate-400 hover:text-indigo-400 transition">Coming Soon</a>
+                    </div>
+                </div>
+                
+                <!-- Tool 2 -->
+                <div class="tool-card rounded-xl p-6">
+                    <div class="w-14 h-14 rounded-lg bg-green-500/20 flex items-center justify-center mb-4">
+                        <i class="fas fa-file-image text-green-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Image Optimizer</h3>
+                    <p class="text-slate-400 mb-4">Compress, convert, and resize images without sacrificing quality.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-green-400">JavaScript</span>
+                        <a href="#" class="text-slate-400 hover:text-green-400 transition">Coming Soon</a>
+                    </div>
+                </div>
+                
+                <!-- Tool 3 -->
+                <div class="tool-card rounded-xl p-6">
+                    <div class="w-14 h-14 rounded-lg bg-purple-500/20 flex items-center justify-center mb-4">
+                        <i class="fas fa-file-code text-purple-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Code Formatter</h3>
+                    <p class="text-slate-400 mb-4">Beautify and minify HTML, CSS, and JavaScript with custom preferences.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-purple-400">JavaScript</span>
+                        <a href="#" class="text-slate-400 hover:text-purple-400 transition">Coming Soon</a>
+                    </div>
+                </div>
+                
+                <!-- Tool 4 -->
+                <div class="tool-card rounded-xl p-6">
+                    <div class="w-14 h-14 rounded-lg bg-amber-500/20 flex items-center justify-center mb-4">
+                        <i class="fas fa-exchange-alt text-amber-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Data Transformer</h3>
+                    <p class="text-slate-400 mb-4">Convert between JSON, XML, YAML, and CSV formats with seamless precision.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-amber-400">JavaScript</span>
+                        <a href="#" class="text-slate-400 hover:text-amber-400 transition">Coming Soon</a>
+                    </div>
+                </div>
+                
+                <!-- Tool 5 -->
+                <div class="tool-card rounded-xl p-6">
+                    <div class="w-14 h-14 rounded-lg bg-rose-500/20 flex items-center justify-center mb-4">
+                        <i class="fas fa-code-compare text-rose-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Text Diff Checker</h3>
+                    <p class="text-slate-400 mb-4">Compare two texts and highlight differences with beautiful visualization.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-rose-400">JavaScript</span>
+                        <a href="#" class="text-slate-400 hover:text-rose-400 transition">Coming Soon</a>
+                    </div>
+                </div>
+                
+                <!-- Tool 6 -->
+                <div class="tool-card rounded-xl p-6">
+                    <div class="w-14 h-14 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4">
+                        <i class="fas fa-palette text-cyan-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Color Utility</h3>
+                    <p class="text-slate-400 mb-4">Convert between color formats, generate palettes, and check contrast ratios.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-cyan-400">JavaScript</span>
+                        <a href="#" class="text-slate-400 hover:text-cyan-400 transition">Coming Soon</a>
                     </div>
                 </div>
             </div>
-            <p class="text-center mt-8 text-sm text-gray-500">This is a live demo. For production use, see our <a
-                    href="#" class="text-indigo-600 hover:underline">API documentation</a>.</p>
         </div>
     </section>
 
     <!-- Vision Section -->
-    <section id="vision" class="py-16 bg-gradient-to-br from-indigo-50 to-purple-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold text-gray-900 mb-12">Why We Exist</h2>
+    <section id="vision" class="py-16 px-4 bg-slate-900">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">Our Vision</h2>
+            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mb-4">
-                        <i class="fas fa-fire text-red-600"></i>
+                <div class="bg-slate-800/50 p-6 rounded-xl">
+                    <div class="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center mb-4">
+                        <i class="fas fa-fire text-red-400"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">The Problem</h3>
-                    <p class="text-gray-600">Modern software is bloated. "AI" solutions often rely on brute
-                        force—guzzling energy in data centers to solve simple problems. This is inefficient, expensive,
-                        and inaccessible.</p>
+                    <h3 class="text-xl font-semibold mb-2 text-red-400">The Problem</h3>
+                    <p class="text-slate-400">Modern software is bloated. "AI" solutions often rely on brute force—guzzling energy in data centers to solve simple problems. This is inefficient, expensive, and inaccessible.</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mb-4">
-                        <i class="fas fa-leaf text-green-600"></i>
+                
+                <div class="bg-slate-800/50 p-6 rounded-xl">
+                    <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center mb-4">
+                        <i class="fas fa-leaf text-green-400"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Our Solution</h3>
-                    <p class="text-gray-600">We believe in <strong>algorithmic elegance over brute force</strong>. We
-                        build hyper-efficient, specialized tools that solve one problem perfectly, with minimal
-                        resources and maximum clarity.</p>
+                    <h3 class="text-xl font-semibold mb-2 text-green-400">Our Solution</h3>
+                    <p class="text-slate-400">We believe in <strong>algorithmic elegance over brute force</strong>. We build hyper-efficient, specialized tools that solve one problem perfectly, with minimal resources and maximum clarity.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-slate-800/30 rounded-xl p-8 border border-slate-700">
+                <h3 class="text-2xl font-semibold mb-4 text-center">The Introibrotech Manifesto</h3>
+                <p class="text-slate-400 text-center">
+                    We reject the notion that more code, more resources, and more complexity equal better solutions. 
+                    We are building a future where software is measured by its efficiency, elegance, and accessibility.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 px-4">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">Project Gallery</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+                    <div class="mb-4 h-48 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-magic text-5xl text-indigo-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Background Remover</h3>
+                    <p class="text-slate-400 mb-4">Our initial project exploring AI-powered image processing with a focus on efficiency.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-slate-500">Python, Flask, Rembg</span>
+                        <a href="#" class="text-sm text-indigo-400 hover:text-indigo-300">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+                    <div class="mb-4 h-48 bg-gradient-to-br from-amber-500/10 to-rose-500/10 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-cubes text-5xl text-amber-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Efficient AI Research</h3>
+                    <p class="text-slate-400 mb-4">Our ongoing exploration into lightweight, efficient AI models that don't require massive resources.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-slate-500">Python, ONNX, Transformers</span>
+                        <a href="#" class="text-sm text-amber-400 hover:text-amber-300">Learn More</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Future Tools Section -->
-    <section id="future" class="py-16 bg-white">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">What's Next?</h2>
-            <p class="text-lg text-gray-600 mb-12">The Background Remover is just the beginning. Our pipeline is full of
-                tools designed for precision.</p>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 hover:border-indigo-300 transition">
-                    <i class="fas fa-code text-indigo-600 text-2xl mb-2"></i>
-                    <p class="font-medium">Code Formatter</p>
-                </div>
-                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 hover:border-indigo-300 transition">
-                    <i class="fas fa-table text-indigo-600 text-2xl mb-2"></i>
-                    <p class="font-medium">Data Converter</p>
-                </div>
-                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 hover:border-indigo-300 transition">
-                    <i class="fas fa-qrcode text-indigo-600 text-2xl mb-2"></i>
-                    <p class="font-medium">QR Architect</p>
-                </div>
-                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 hover:border-indigo-300 transition">
-                    <i class="fas fa-file-pdf text-indigo-600 text-2xl mb-2"></i>
-                    <p class="font-medium">PDF Forge</p>
-                </div>
-            </div>
-
-            <div class="bg-indigo-50 rounded-xl p-8 max-w-2xl mx-auto">
-                <h3 class="text-xl font-semibold mb-4">Join the Journey</h3>
-                <p class="mb-4">Be the first to access new tools. We're building the future of efficient software, and
-                    we want you to be a part of it.</p>
-                <form class="flex flex-col sm:flex-row gap-2">
-                    <input type="email" placeholder="Your email address" required
-                        class="flex-grow px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    <button type="submit"
-                        class="bg-indigo-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-indigo-700 transition">Get
-                        Early Access</button>
-                </form>
-            </div>
+    <!-- Newsletter Section -->
+    <section id="newsletter" class="py-16 px-4 bg-slate-900">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4 section-title">Join Our Journey</h2>
+            <p class="text-lg text-slate-400 mb-8">
+                Be the first to know when we launch new tools and research. No spam, just updates.
+            </p>
+            
+            <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input type="email" placeholder="Your email address" required class="flex-grow px-4 py-3 rounded-md bg-slate-800 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <button type="submit" class="bg-indigo-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-indigo-700 transition">Subscribe</button>
+            </form>
+            
+            <p class="text-sm text-slate-500 mt-4">We respect your privacy. Unsubscribe at any time.</p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="flex items-center justify-center space-x-2 mb-4">
-                <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center">
-                    <span class="text-white font-bold text-sm">I</span>
+    <footer class="py-12 px-4 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">I</span>
+                    </div>
+                    <span class="text-xl font-bold gradient-text">Introibrotech</span>
                 </div>
-                <span class="text-xl font-bold">Introibrotech</span>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-slate-400 hover:text-indigo-400 transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-indigo-400 transition">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-indigo-400 transition">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                </div>
             </div>
-            <p class="mb-4">Building the next generation of efficient computing.</p>
-            <p class="text-sm text-gray-400">© 2024 Introibrotech. All rights reserved.</p>
+            
+            <div class="mt-8 pt-8 border-t border-slate-800 text-center">
+                <p class="text-slate-500">© 2024 Introibrotech. All rights reserved.</p>
+                <p class="text-slate-500 text-sm mt-2">Building the next generation of efficient computing.</p>
+            </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script>
-        // Elements
-        const dropZone = document.getElementById('drop-zone');
-        const fileInput = document.getElementById('file-input');
-        const previewContainer = document.getElementById('preview-container');
-        const previewImage = document.getElementById('preview-image');
-        const processButton = document.getElementById('process-button');
-        const buttonText = document.getElementById('button-text');
-        const spinner = document.getElementById('spinner');
-        const resultPlaceholder = document.getElementById('result-placeholder');
-        const resultContainer = document.getElementById('result-container');
-        const resultImage = document.getElementById('result-image');
-        const downloadButton = document.getElementById('download-button');
-
-        // Event Listeners
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            dropZone.addEventListener(eventName, preventDefaults, false);
-            document.addEventListener(eventName, preventDefaults, false);
+        // Mobile menu functionality
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
         });
-        function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
-
-        dropZone.addEventListener('drop', handleDrop);
-        fileInput.addEventListener('change', handleFileSelect);
-        dropZone.addEventListener('click', () => fileInput.click());
-        processButton.addEventListener('click', processImage);
-
-        // Highlight drop zone
-        ['dragenter', 'dragover'].forEach(eventName => {
-            dropZone.addEventListener(eventName, () => dropZone.classList.add('border-indigo-400', 'bg-white'), false);
+        
+        // Simple form validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            if (email) {
+                alert('Thank you for subscribing! We\'ll be in touch with updates soon.');
+                this.reset();
+            }
         });
-        ['dragleave', 'drop'].forEach(eventName => {
-            dropZone.addEventListener(eventName, () => dropZone.classList.remove('border-indigo-400', 'bg-white'), false);
-        });
-
-        function handleDrop(e) { handleFiles(e.dataTransfer.files); }
-        function handleFileSelect(e) { handleFiles(e.target.files); }
-
-        function handleFiles(files) {
-            if (files.length === 0) return;
-            const file = files[0];
-            if (!file.type.match('image.*')) { alert('Please upload an image file (JPEG, PNG, etc.).'); return; }
-
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                previewImage.src = e.target.result;
-                previewContainer.classList.remove('hidden');
-                processButton.classList.remove('hidden');
-                // Reset result area
-                resultContainer.classList.add('hidden');
-                resultPlaceholder.classList.remove('hidden');
+        
+        // Add subtle animations on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
             };
-            reader.readAsDataURL(file);
-        }
-
-        // This function will call your Railway API
-        function processImage() {
-            if (!fileInput.files[0]) return;
-
-            // UI Updates
-            processButton.disabled = true;
-            buttonText.textContent = 'Processing...';
-            spinner.classList.remove('hidden');
-
-            // REPLACE 'YOUR_RAILWAY_URL' WITH YOUR ACTUAL URL FROM RAILWAY
-            const API_URL = 'https://bg-remover-api-production.up.railway.app/remove-bg';
-
-            let formData = new FormData();
-            formData.append('image', fileInput.files[0]);
-
-            // Make the real API call to your deployed backend
-            fetch(API_URL, {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        // Handle HTTP errors (e.g., 400, 500)
-                        return response.json().then(err => { throw new Error(err.error || 'Server error') });
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
                     }
-                    return response.blob(); // Get the response as an image Blob
-                })
-                .then(blob => {
-                    // Create a URL for the returned image blob
-                    const url = URL.createObjectURL(blob);
-                    resultImage.src = url;
-                    downloadButton.href = url;
-                    downloadButton.download = 'introibrotech-no-bg.png'; // Set the download filename
-
-                    // Show the result and hide the placeholder
-                    resultPlaceholder.classList.add('hidden');
-                    resultContainer.classList.remove('hidden');
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error: ' + error.message); // Show the error message to the user
-                })
-                .finally(() => {
-                    // Reset the button state whether it was successful or not
-                    resetButton();
                 });
-        }
-
-        function resetButton() {
-            processButton.disabled = false;
-            buttonText.textContent = 'Remove Background';
-            spinner.classList.add('hidden');
-        }
+            }, observerOptions);
+            
+            document.querySelectorAll('.tool-card, .section-title').forEach(function(item) {
+                observer.observe(item);
+            });
+        });
     </script>
 </body>
-
-
 </html>
